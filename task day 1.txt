@@ -1,0 +1,30 @@
+Task 1:
+var,let,const
+scope of variables
+data types-primitive, non-primitive,
+conditional statements-> if..else, switch, ternary
+loops -> for (for, for in, for of), while, forEach, map
+Array-> items, index, find, delete, insert, update
+Object-> entries, values, value, map, deconstruction ...
+function-> Types of functions, definition, calling
+consoles-> log, error, warn, table
+
+Task 2:
+Common methods in HTTP
+How http works -> User send request server will process and send back a response object
+POST
+GET
+PUT
+PATCH
+DELETE
+
+Common Status codes  
+1xx
+2xx- client related codes 200, 202, 204
+3xx -browser related codes
+4xx- client side error codes 400, 403, 404
+5xx - server side error codes 500
+
+Task 3:
+Promises and their types
+then..catch, async await
