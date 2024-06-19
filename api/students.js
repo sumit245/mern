@@ -13,7 +13,7 @@ router.get("/", GetStudents);
 router.post("/create-student", CreateStudent);
 router.put("/update-student/:id", UpdateStudent);
 router.get("/get-student-by-id/:id", GetStudentById);
-router.delete("/delete-student/:id", DeleteStudent);
-router.delete("/", DeleteStudents);
+router.delete("/delete-student/:id", DeleteStudents);
+router.delete("/", DeleteStudent);
 
 module.exports = router;
