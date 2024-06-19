@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 
 const Subjects = new mongoose.Schema(
   {
-    subjectname: String,
-    subjectid: String,
-    subjectteachingby: String,
-    subjectperiod: String,
+    subjectName: String,
+    subjectId: String,
+    teacher: String,
+    subjectPeriod: String,
   },
   {
     timestamps: { createdAt: true, updatedAt: true },

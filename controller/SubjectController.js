@@ -13,9 +13,9 @@ module.exports.CreateSubject = async (req, res) => {
 
 module.exports.GetSubjects = async (req, res) => {
   try {
-    const Subjects = await Subjects.find();
+    const subjects = await Subjects.find();
     res
-      .send({ message: "Subject fetched successfully", data: Subjects })
+      .send({ message: "Subject fetched successfully", data: subjects })
       .status(200);
   } catch (error) {
     res.send({ message: "Unable to find Subjects" }).status(404);

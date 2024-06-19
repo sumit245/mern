@@ -9,6 +9,7 @@ module.exports.CreateUser = async (req, res) => {
   }
 };
 
+//This code will find the mongodb model and return the complete array of users
 module.exports.GetUsers = async (req, res) => {
   try {
     const users = await Users.find();

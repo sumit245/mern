@@ -36,6 +36,6 @@ app.use(
 app.use(express.json());
 
 app.use("/api/users", users);
-app.use("/api/students", students);
+app.use("/api/students", students); //Completely running
 app.use("/api/teachers", teachers);
 app.use("/api/subjects", subjects);

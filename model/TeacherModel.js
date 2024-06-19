@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 
 const Teachers = new mongoose.Schema(
   {
-    teachername: String,
-    employeeid: String,
-    teacherdepartment: String,
-    accountnumber: String,
+    teacherName: String,
+    employeeId: String,
+    department: String,
+    accountNumber: String,
   },
   {
     timestamps: { createdAt: true, updatedAt: true },

@@ -2,14 +2,14 @@ const router = require("express").Router();
 
 const {
   CreateTeacher,
-  GetTeacher,
+  GetTeachers,
   GetTeacherById,
   DeleteTeacher,
   DeleteTeachers,
   UpdateTeacher,
 } = require("../controller/TeacherController");
 
-router.get("/", GetTeacher);
+router.get("/", GetTeachers);
 router.post("/create-teacher", CreateTeacher);
 router.put("/update-teacher/:id", UpdateTeacher);
 router.get("/get-teacher-by-id/:id", GetTeacherById);

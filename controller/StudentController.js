@@ -15,7 +15,7 @@ module.exports.GetStudents = async (req, res) => {
   try {
     const students = await Students.find();
     res
-      .send({ message: "Student fetched successfully", data: Students })
+      .send({ message: "Student fetched successfully", data: students })
       .status(200);
   } catch (error) {
     res.send({ message: "Unable to find Students" }).status(404);
