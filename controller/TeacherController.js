@@ -4,7 +4,7 @@ module.exports.CreateTeacher = async (req, res) => {
   try {
     const teacher = await Teachers.create(req.body);
     res
-      .send({ message: "Teacher Created successfully", data: teacher })
+      .send({ message: "Teacher created successfully", data: teacher })
       .status(200);
   } catch (error) {
     res.send({ message: "Teacher not created" }).status(404);
