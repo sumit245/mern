@@ -1,4 +1,4 @@
-const Admins = require( "../model/AdminModel" );
+const Admins = require("../model/AdminModel");
 
 module.exports.CreateAdmin = async (req, res) => {
   try {
@@ -41,7 +41,9 @@ module.exports.UpdateAdmin = async (req, res) => {
       req.body,
       { new: true }
     );
-    res.send({ message: "Admin Updated successfully", data: admin }).status(200);
+    res
+      .send({ message: "Admin Updated successfully", data: admin })
+      .status(200);
   } catch (error) {
     res.send({ message: "Unable to update" }).status(404);
   }
@@ -50,7 +52,9 @@ module.exports.UpdateAdmin = async (req, res) => {
 module.exports.DeleteAdmin = async (req, res) => {
   try {
     const admin = await Admins.findByIdAndDelete({ _id: req.params.id });
-    res.send({ message: "Admin Deleted successfully", data: admin }).status(200);
+    res
+      .send({ message: "Admin Deleted successfully", data: admin })
+      .status(200);
   } catch (error) {
     res.send({ message: "Unable to delete" }).status(404);
   }
@@ -59,7 +63,9 @@ module.exports.DeleteAdmin = async (req, res) => {
 module.exports.DeleteAdmins = async (req, res) => {
   try {
     const admin = await Admins.deleteMany();
-    res.send({ message: "Admin Updated successfully", data: admin }).status(200);
+    res
+      .send({ message: "Admin Updated successfully", data: admin })
+      .status(200);
   } catch (error) {
     res.send({ message: "Unable to delete" }).status(404);
   }
