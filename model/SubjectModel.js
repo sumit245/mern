@@ -2,20 +2,19 @@ const mongoose = require("mongoose");
 
 const Subjects = new mongoose.Schema(
   {
-    subjectName: {
+    subject_name: String,
+    subject_code: {
       type: String,
+      min: [6],
       required: true,
     },
-    subjectCode: {
+    subject_assigned_by: String,
+    subject_period: {
       type: Number,
+      enum: ["1", "2", "3", "4", "5", "6", "7", "8"],
       required: true,
     },
-    subjectAssignedBy: String,
-    subjectPeriod: {
-      type: Number,
-      required: true,
-    },
-    examinationDate: {
+    examination_date: {
       type: "object",
       properties: {
         day: {
@@ -34,9 +33,8 @@ const Subjects = new mongoose.Schema(
       },
       required: ["day", "month", "year"],
     },
-
-    examMode: { type: String, enum: ["Offline", "Online"], required: true },
-    resultPublicationDate: {
+    exam_mode: String,
+    result_publication_date: {
       type: "object",
       properties: {
         day: {
@@ -55,21 +53,14 @@ const Subjects = new mongoose.Schema(
       },
       required: ["day", "month", "year"],
     },
-
-    marks: {
-      type: Number,
-      required: true,
-    },
+    marks: String,
     grade: {
       type: String,
-      enum: ["A", "B", "C", "D", "E", "O"],
+      enum: ["A", "B", "C", "D", "E"],
       required: true,
     },
-    passingStatus: {
-      type: String,
-      required: true,
-    },
-    certificateDistributionDate: {
+    passing_status: String,
+    certificate_distribution_date: {
       type: "object",
       properties: {
         day: {
@@ -87,6 +78,11 @@ const Subjects = new mongoose.Schema(
         },
       },
       required: ["day", "month", "year"],
+    },
+    certificate_number: {
+      type: String,
+      min: [6],
+      required: true,
     },
   },
   {

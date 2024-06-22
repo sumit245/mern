@@ -2,145 +2,104 @@ const mongoose = require("mongoose");
 
 const Students = new mongoose.Schema(
   {
-    studentName: {
+    student_id: String,
+    first_name: {
       type: String,
       required: true,
     },
-    admissionNo: {
-      type: Number,
-      min: [4, "Must be at least"],
+    last_name: {
+      type: String,
       required: true,
     },
-    rollNo: {
-      type: Number,
-      min: [2],
-      required: true,
+    date_of_birth: {
+      type: Date,
     },
-    admissionDate: {
-      type: "object",
-      properties: {
-        day: {
-          type: "integer",
-          minimum: 1,
-          maximum: 31,
-        },
-        month: {
-          type: "integer",
-          minimum: 1,
-          maximum: 12,
-        },
-        year: {
-          type: "integer",
-        },
-      },
-      required: ["day", "month", "year"],
-    },
-    mobileNo: {
-      type: Number,
-      min: [10, "Mobile Number not less than ten digit"],
-      required: true,
-    },
-    emailId: { type: String, required: true, match: /\S+@\S+\.\S+/ },
-    state: { type: String, required: true },
-    city: { type: String, required: true },
-    pinCode: {
-      type: Number,
-      min: [6],
-      required: true,
-    },
-    religion: { type: String, required: true },
-    cast: { type: String, required: true },
-    dob: {
-      type: "object",
-      properties: {
-        day: {
-          type: "integer",
-          minimum: 1,
-          maximum: 31,
-        },
-        month: {
-          type: "integer",
-          minimum: 1,
-          maximum: 12,
-        },
-        year: {
-          type: "integer",
-        },
-      },
-      required: ["day", "month", "year"],
-    },
-
     gender: { type: String, enum: ["Male", "Female", "Other"], required: true },
-    address: { type: String, required: true },
-    currentAddress: { type: String, required: true },
-    permanentAddress: { type: String, required: true },
-
-    schoolHouseId: String,
-    bloodGroup: {
+    blood_group: {
       type: String,
       enum: ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"],
       required: true,
     },
-    hostelRoomId: String,
-    aadharNo: {
+    email: String,
+    phone_number: {
       type: Number,
-      min: [14, "Addhar Number"],
+      min: [10, "Mobile Number not less than ten digit"],
       required: true,
     },
-    bankName: { type: String, required: true },
-    accountNumber: { type: Number, required: true },
-    ifscCode: { type: String, required: true },
-    fatherName: {
-      type: String,
-      required: true,
-    },
-    fatherOccuption: {
-      type: String,
-      required: true,
-    },
-    motherName: {
-      type: String,
-      required: true,
-    },
-    motherOccuption: {
-      type: String,
-      required: true,
-    },
-    guardianName: {
-      type: String,
-      required: true,
-    },
-    guardianOccuption: {
-      type: String,
-      required: true,
-    },
-    guardianAddress: {
-      type: String,
-      required: true,
-    },
-    guardianEmail: String,
-    isActive: {
-      type: Boolean,
-      default: true,
-      required: true,
-    },
-    previousSchool: {
-      type: String,
-      required: true,
-    },
-    height: {
+    address: { type: String, required: true },
+    student_photo: String,
+    admission_id: {
       type: Number,
-      min: [4, "height"],
+      min: [4, "Must be at least"],
       required: true,
     },
-    weight: {
+    admission_date: {
+      type: "object",
+      properties: {
+        day: {
+          type: "integer",
+          minimum: 1,
+          maximum: 31,
+        },
+        month: {
+          type: "integer",
+          minimum: 1,
+          maximum: 12,
+        },
+        year: {
+          type: "integer",
+        },
+      },
+      required: ["day", "month", "year"],
+    },
+    course: String,
+    hostel_number: {
       type: Number,
-      min: [3, "weight"],
+      min: [2],
       required: true,
     },
-
-    disReason: String,
-    note: String,
+    bus_number: {
+      type: String,
+      min: [10],
+      required: true,
+    },
+    bus_route_number: {
+      type: Number,
+      min: [2],
+      required: true,
+    },
+    bus_driver_name: {
+      type: String,
+      required: true,
+    },
+    bus_driver_phone_number: {
+      type: Number,
+      min: [10, "Mobile Number not less than ten digit"],
+      required: true,
+    },
+    fathers_name: {
+      type: String,
+      required: true,
+    },
+    mothers_name: {
+      type: String,
+      required: true,
+    },
+    fathers_phone_number: {
+      type: Number,
+      min: [10, "Mobile Number not less than ten digit"],
+      required: true,
+    },
+    mothers_phone_number: {
+      type: Number,
+      min: [10, "Mobile Number not less than ten digit"],
+      required: true,
+    },
+    emergency_contact_number: {
+      type: Number,
+      min: [10, "Mobile Number not less than ten digit"],
+      required: true,
+    },
   },
   {
     timestamps: { createdAt: true, updatedAt: true },
