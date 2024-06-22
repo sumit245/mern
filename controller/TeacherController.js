@@ -3,11 +3,12 @@ const Teachers = require("../model/TeacherModel");
 module.exports.CreateTeacher = async (req, res) => {
   try {
     const teacher = await Teachers.create(req.body);
+
     res
       .send({ message: "Teacher created successfully", data: teacher })
       .status(200);
   } catch (error) {
-    res.send({ message: "Teacher not created" }).status(404);
+    res.send({ message: "Teacher not created", error: error }).status(404);
   }
 };
 
@@ -69,3 +70,5 @@ module.exports.DeleteTeachers = async (req, res) => {
     res.send({ message: "Unable to delete" }).status(404);
   }
 };
+
+
