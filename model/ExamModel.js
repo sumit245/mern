@@ -2,16 +2,31 @@ const mongoose = require("mongoose");
 
 const Exams = new mongoose.Schema(
   {
-    exam_types: { type: mongoose.types.ObjectId, ref: Exam_Types },
+    exam_types: String,
 
-    duration: String,
-    passing_marks: Number,
-    subject: String,
-    alloted_class: String,
-    instructions: String,
-    student_detail: { type: mongoose.types.ObjectId, ref: StudentModel },
+    duration: {
+      type: String,
+      required: true,
+    },
+    passing_marks: {
+      type: Number,
+      required: true,
+    },
+    subject: {
+      type: String,
+      required: true,
+    },
+    alloted_class: {
+      type: String,
+      required: true,
+    },
+    instructions: {
+      type: String,
+      required: true,
+    },
+    student_detail: Array,
 
-    Question: [{ types: mon }],
+    question: Array,
   },
 
   {

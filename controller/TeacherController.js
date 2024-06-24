@@ -1,5 +1,6 @@
 const Teachers = require("../model/TeacherModel");
 const QuestionModel = require("../model/QuestionModel");
+const Exam = require("../model/ExamModel");
 module.exports.CreateTeacher = async (req, res) => {
   try {
     const teacher = await Teachers.create(req.body);
@@ -90,18 +91,36 @@ module.exports.CreateExam = async (req, res) => {
       console.log("This month falls in 4th quarter");
       eligibleExam = "Final";
     }
+
+   
+
     console.log(eligibleExam);
     console.log(req.body.exam_type);
     if (eligibleExam.match(req.body.exam_type)) {
-      const questions = await questions.save(req.body.questions);
+      // const questions = await QuestionModel.save(req.body.questions);
+      // console.error("You can create this exam");
+      // const exam = new Exam.create(req.body);
+      // console.error("Here is the error");
+      // res.send({ data: exam, message: "created" }).status(200);
+      const questions = await QuestionModel.create(req.body.questions);
       const exam = await Exam.create({
-        exam_types: exam_type._id(req.body.exam_type),
-        duration: req.body.duration,
-        questions: question._id,
-      }); 
+        ...req.body,
+        questions: questions._id,
+      });
+      res
+        .send({ data: exam, message: "Exam created successfully" })
+        .status(200);
+
+      // duration: req.body.duration,
+      // questions: questions._id,
+
+      // Send a success response
     } else {
       console.log("You cannot create this exam");
+      res.send({ message: "Exam cannot be created" }).status(403);
     }
     //Get all question and create exam
-  } catch (error) {}
+  } catch (error) {
+    res.send({ message: "Exam cannot be created", error: error }).status(500);
+  }
 };
