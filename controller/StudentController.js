@@ -76,6 +76,10 @@ module.exports.GetResult = async (req, res) => {
     const student = await Students.findById({ _id: req.params.id })
     //const exams=await Exams.find()
   } catch (error) {
-    
+
   }
+}
+
+module.exports.TakeExam = async (req, res) => {
+
 }

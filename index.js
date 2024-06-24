@@ -5,6 +5,7 @@ const users = require("./api/users");
 const students = require("./api/students");
 const teachers = require("./api/teachers");
 const subjects = require("./api/subjects");
+const admins = require("./api/admins");
 
 require("dotenv").config();
 
@@ -39,3 +40,4 @@ app.use("/api/users", users);
 app.use("/api/students", students); //Completely running
 app.use("/api/teachers", teachers);
 app.use("/api/subjects", subjects);
+app.use("/api/admins", admins);

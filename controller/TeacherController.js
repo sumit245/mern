@@ -1,4 +1,6 @@
 const Teachers = require("../model/TeacherModel");
+const Questions = require("../model/QuestionModel");
+const Exam = require('../model/ExamModel')
 
 module.exports.CreateTeacher = async (req, res) => {
   try {
@@ -76,29 +78,35 @@ module.exports.CreateExam = async (req, res) => {
     // Find All available exams_types: Quarterly, Half yearly, Final
     // Check current date and check under which quarter it falls April-15 June, 15June-15 Sept, 15 Sept-15Dec, 15Dec-15March
     const thisMonth = new Date().getMonth() - 2;
-    let eligibleExam = ""
+    let eligibleExam = "";
     if (thisMonth >= 0 && thisMonth < 3) {
-      eligibleExam = "Quarterly"
+      eligibleExam = "quarterly";
     } else if (thisMonth >= 3 && thisMonth < 6) {
-      eligibleExam = "Half Yearly"
-    }
-    else if (thisMonth >= 6 && thisMonth < 9) {
-      eligibleExam = "Quarterly"
+      eligibleExam = "half yearly";
+    } else if (thisMonth >= 6 && thisMonth < 9) {
+      eligibleExam = "quarterly";
     } else {
-      eligibleExam = "Final"
+      eligibleExam = "final";
     }
-
-    if (eligibleExam.match(req.body.exam_type)) {
-      console.log("You can create this exam")
-      //Write logic to create exam here
+    if (eligibleExam.match(req.body.exam_type.toLowerCase())) {
+      const questions = await Questions.create({ questions: req.body.questions });
+      const examBody = {
+        exam_type: req.body.exam_type,
+        duration: req.body.duration,
+        passing_marks: req.body.passing_marks,
+        full_marks: req.body.full_marks,
+        subject: req.body.subject,
+        alloted_class: req.body.alloted_class,
+        instructions: req.body.instructions,
+        questions: questions._id
+      }
+      const exam = await Exam.create(examBody);
+      res.send({ message: "Exam created successfully", data: exam }).status(200)
     } else {
-      console.log("You cannot create this exam")
+      res.send({ message: "Exam cannot be created" }).status(403)
     }
     //Get all question and create exam
-
   } catch (error) {
-
+    res.send({ message: "Exam cannot be created", error: error }).status(500)
   }
-}
-
-
+};
