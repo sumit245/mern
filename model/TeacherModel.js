@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Classes = require('./ClassModel')
+const Classes = require("./ClassModel");
 
 const teacherSchema = new mongoose.Schema(
   {
@@ -88,7 +88,7 @@ const teacherSchema = new mongoose.Schema(
     },
     allotment_class: {
       type: mongoose.Types.ObjectId,
-      ref: Classes
+      ref: Classes,
     },
     allotment_section: {
       type: String,
@@ -119,10 +119,8 @@ const teacherSchema = new mongoose.Schema(
     },
   },
   {
-    timestamps: { createdAt: true, updatedAt: true }
+    timestamps: { createdAt: true, updatedAt: true },
   }
 );
-
-
 
 module.exports = mongoose.model("Teachers", teacherSchema);

@@ -1,6 +1,7 @@
 const Teachers = require("../model/TeacherModel");
-const QuestionModel = require("../model/QuestionModel");
-const Exam = require("../model/ExamModel");
+const Questions = require("../model/QuestionModel");
+const Exam = require( "../model/ExamModel" );
+
 module.exports.CreateTeacher = async (req, res) => {
   try {
     const teacher = await Teachers.create(req.body);
@@ -79,48 +80,43 @@ module.exports.CreateExam = async (req, res) => {
     const thisMonth = new Date().getMonth() - 2;
     let eligibleExam = "";
     if (thisMonth >= 0 && thisMonth < 3) {
-      console.log("This month falls in 1st quarter");
-      eligibleExam = "Quarterly";
+      eligibleExam = "quarterly";
     } else if (thisMonth >= 3 && thisMonth < 6) {
-      console.log("This month falls in 2nd quarter");
-      eligibleExam = "Half Yearly";
+      eligibleExam = "half yearly";
     } else if (thisMonth >= 6 && thisMonth < 9) {
-      console.log("This month falls in 3rd quarter");
-      eligibleExam = "Quarterly";
+      eligibleExam = "quarterly";
     } else {
-      console.log("This month falls in 4th quarter");
-      eligibleExam = "Final";
+      eligibleExam = "final";
     }
-
-   
-
-    console.log(eligibleExam);
-    console.log(req.body.exam_type);
-    if (eligibleExam.match(req.body.exam_type)) {
-      // const questions = await QuestionModel.save(req.body.questions);
-      // console.error("You can create this exam");
-      // const exam = new Exam.create(req.body);
-      // console.error("Here is the error");
-      // res.send({ data: exam, message: "created" }).status(200);
-      const questions = await QuestionModel.create(req.body.questions);
-      const exam = await Exam.create({
-        ...req.body,
-        questions: questions._id,
+    console.log( "Eligible exam type" );
+    console.log(req.body.exam_type.toLowerCase());
+    if (eligibleExam.match(req.body.exam_type.toLowerCase())) {
+      console.log("Creating questions.");
+      const questions = await Questions.create({
+        questions: req.body.questions,
       });
+      console.log("Questions created:");
+      const examBody = {
+        exam_type: req.body.exam_type,
+        duration: req.body.duration,
+        passing_marks: req.body.passing_marks,
+        full_marks: req.body.full_marks,
+        subject: req.body.subject,
+        alloted_class: req.body.alloted_class,
+        instructions: req.body.instructions,
+        questions: questions._id,
+      };
+      console.log("Creating exam with body");
+      const exam = await Exam.create(examBody);
       res
-        .send({ data: exam, message: "Exam created successfully" })
+        .send({ message: "Exam created successfully", data: exam })
         .status(200);
-
-      // duration: req.body.duration,
-      // questions: questions._id,
-
-      // Send a success response
     } else {
-      console.log("You cannot create this exam");
       res.send({ message: "Exam cannot be created" }).status(403);
     }
     //Get all question and create exam
   } catch (error) {
+    console.error("Error creating exam:");
     res.send({ message: "Exam cannot be created", error: error }).status(500);
   }
 };

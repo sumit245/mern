@@ -1,32 +1,16 @@
 const mongoose = require("mongoose");
-
+const Questions = require('./QuestionModel')
 const Exams = new mongoose.Schema(
   {
-    exam_types: String,
-
-    duration: {
-      type: String,
-      required: true,
-    },
-    passing_marks: {
-      type: Number,
-      required: true,
-    },
-    subject: {
-      type: String,
-      required: true,
-    },
-    alloted_class: {
-      type: String,
-      required: true,
-    },
-    instructions: {
-      type: String,
-      required: true,
-    },
+    exam_type: String,
+    duration: String,
+    passing_marks: Number,
+    full_marks: Number,
+    subject: String,
+    alloted_class: String,
+    instructions: String,
     student_detail: Array,
-
-    question: Array,
+    questions: { type: mongoose.Types.ObjectId, ref: Questions },
   },
 
   {

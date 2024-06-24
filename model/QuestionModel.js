@@ -5,8 +5,8 @@ const Questions = new mongoose.Schema(
     questions: [
       {
         text: String,
-        options: String,
-        correct_answer: String,
+        options: [String],
+        answer: String,
       },
     ],
   },
