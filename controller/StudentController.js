@@ -1,5 +1,5 @@
 const Students = require("../model/StudentModel");
-const Subjects = require('../model/SubjectModel')
+const Subjects = require("../model/SubjectModel");
 
 module.exports.CreateStudent = async (req, res) => {
   try {
@@ -73,13 +73,9 @@ module.exports.DeleteStudents = async (req, res) => {
 
 module.exports.GetResult = async (req, res) => {
   try {
-    const student = await Students.findById({ _id: req.params.id })
+    const student = await Students.findById({ _id: req.params.id });
     //const exams=await Exams.find()
-  } catch (error) {
+  } catch (error) {}
+};
 
-  }
-}
-
-module.exports.TakeExam = async (req, res) => {
-
-}
+module.exports.TakeExam = async (req, res) => {};

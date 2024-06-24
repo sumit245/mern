@@ -1,6 +1,6 @@
 const Teachers = require("../model/TeacherModel");
 const Questions = require("../model/QuestionModel");
-const Exam = require('../model/ExamModel')
+const Exam = require("../model/ExamModel");
 
 module.exports.CreateTeacher = async (req, res) => {
   try {
@@ -89,7 +89,9 @@ module.exports.CreateExam = async (req, res) => {
       eligibleExam = "final";
     }
     if (eligibleExam.match(req.body.exam_type.toLowerCase())) {
-      const questions = await Questions.create({ questions: req.body.questions });
+      const questions = await Questions.create({
+        questions: req.body.questions,
+      });
       const examBody = {
         exam_type: req.body.exam_type,
         duration: req.body.duration,
@@ -98,15 +100,17 @@ module.exports.CreateExam = async (req, res) => {
         subject: req.body.subject,
         alloted_class: req.body.alloted_class,
         instructions: req.body.instructions,
-        questions: questions._id
-      }
+        questions: questions._id,
+      };
       const exam = await Exam.create(examBody);
-      res.send({ message: "Exam created successfully", data: exam }).status(200)
+      res
+        .send({ message: "Exam created successfully", data: exam })
+        .status(200);
     } else {
-      res.send({ message: "Exam cannot be created" }).status(403)
+      res.send({ message: "Exam cannot be created" }).status(403);
     }
     //Get all question and create exam
   } catch (error) {
-    res.send({ message: "Exam cannot be created", error: error }).status(500)
+    res.send({ message: "Exam cannot be created", error: error }).status(500);
   }
 };

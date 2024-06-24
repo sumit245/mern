@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Questions = require('./QuestionModel')
+const Questions = require("./QuestionModel");
 const Exams = new mongoose.Schema(
   {
     exam_type: String,
