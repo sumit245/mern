@@ -1,4 +1,5 @@
 const Students = require("../model/StudentModel");
+const Subjects = require('../model/SubjectModel')
 
 module.exports.CreateStudent = async (req, res) => {
   try {
@@ -69,3 +70,12 @@ module.exports.DeleteStudents = async (req, res) => {
     res.send({ message: "Unable to delete" }).status(404);
   }
 };
+
+module.exports.GetResult = async (req, res) => {
+  try {
+    const student = await Students.findById({ _id: req.params.id })
+    //const exams=await Exams.find()
+  } catch (error) {
+    
+  }
+}

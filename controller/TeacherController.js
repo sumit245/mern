@@ -78,23 +78,19 @@ module.exports.CreateExam = async (req, res) => {
     const thisMonth = new Date().getMonth() - 2;
     let eligibleExam = ""
     if (thisMonth >= 0 && thisMonth < 3) {
-      console.log("This month falls in 1st quarter")
       eligibleExam = "Quarterly"
     } else if (thisMonth >= 3 && thisMonth < 6) {
-      console.log("This month falls in 2nd quarter")
       eligibleExam = "Half Yearly"
     }
     else if (thisMonth >= 6 && thisMonth < 9) {
-      console.log("This month falls in 3rd quarter")
       eligibleExam = "Quarterly"
     } else {
-      console.log("This month falls in 4th quarter")
       eligibleExam = "Final"
     }
-    console.log(eligibleExam)
-    console.log(req.body.exam_type)
+
     if (eligibleExam.match(req.body.exam_type)) {
       console.log("You can create this exam")
+      //Write logic to create exam here
     } else {
       console.log("You cannot create this exam")
     }
